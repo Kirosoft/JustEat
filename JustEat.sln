@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JustEat", "src\JustEat\JustEat.xproj", "{0D9660EF-1A99-48B3-92EE-6AE57420FE06}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JustEat.UnitTests", "src\JustEat.UnitTests\JustEat.UnitTests.xproj", "{9EBAC90E-D838-4BBF-8D6E-64AADC51D559}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JustEat.IntegrationTests", "src\JustEat.IntegrationTests\JustEat.IntegrationTests.xproj", "{1925EEE6-BEFA-4D9C-BCEE-1BB16DADF28F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +26,21 @@ Global
 		{0D9660EF-1A99-48B3-92EE-6AE57420FE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D9660EF-1A99-48B3-92EE-6AE57420FE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D9660EF-1A99-48B3-92EE-6AE57420FE06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBAC90E-D838-4BBF-8D6E-64AADC51D559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBAC90E-D838-4BBF-8D6E-64AADC51D559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBAC90E-D838-4BBF-8D6E-64AADC51D559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBAC90E-D838-4BBF-8D6E-64AADC51D559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1925EEE6-BEFA-4D9C-BCEE-1BB16DADF28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1925EEE6-BEFA-4D9C-BCEE-1BB16DADF28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1925EEE6-BEFA-4D9C-BCEE-1BB16DADF28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1925EEE6-BEFA-4D9C-BCEE-1BB16DADF28F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D9660EF-1A99-48B3-92EE-6AE57420FE06} = {E4F424CF-02D7-46A2-A34E-4A8CE992B5C6}
+		{9EBAC90E-D838-4BBF-8D6E-64AADC51D559} = {E4F424CF-02D7-46A2-A34E-4A8CE992B5C6}
+		{1925EEE6-BEFA-4D9C-BCEE-1BB16DADF28F} = {E4F424CF-02D7-46A2-A34E-4A8CE992B5C6}
 	EndGlobalSection
 EndGlobal

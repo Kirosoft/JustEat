@@ -6,7 +6,7 @@ namespace JustEat.Services
 {
     public interface IRestaurantService
     {
-        Task<List<Restaurant>> GetRestaurants(string shortCode);
+        Task<List<Restaurant>> GetAvailableRestaurants(string shortCode);
     }
 }
     

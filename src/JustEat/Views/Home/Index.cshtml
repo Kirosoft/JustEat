@@ -1,7 +1,59 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<html>
+<head>
+    <script type="text/javascript" src="/lib/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <h1>Just Eat - Technical Test</h1>
+    <p>
+        Short Code: <input type="text" id="shortCodeInput" data-bind="textInput: shortCode" />
+        <button id="submitShortCode" data-bind="click: viewShortCode">View</button>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Cuisine</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: restaurants">
+            <tr>
+                <td data-bind="text:Name"></td>
+                <td data-bind="text:Rating"></td>
+                <td data-bind="text:CuisineTypes"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
 
-<p>Hello from the page</p>
+        function ViewModel() {
+            var self = this;
+            
+            // Initialise from server-side data for each page load
+            // TODO: implement more reactive update of restaurant list
+            self.shortCode = ko.observable("@Html.Raw(ViewData["ShortCode"])");
+            self.restaurants = ko.observableArray(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewData["Restaurants"])));
+            self.viewShortCode = function () {
+                // Use reactive event from KO to reload the page with the
+                // requested shortCode restaurant data
+                window.location.href = "/home/index/" + self.shortCode();
+            }
+        };
+
+        var viewModel = new ViewModel();
+        ko.applyBindings(viewModel);
+
+        $(document).ready(function () {
+
+            // A little useability enhancement using Jquery
+            $('#shortCodeInput').keypress(function (e) {
+                if (e.keyCode == 13)
+                    viewModel.viewShortCode();
+            });
+            $('#shortCodeInput').focus();
+
+        })
+    </script>
+</body>
+</html>
