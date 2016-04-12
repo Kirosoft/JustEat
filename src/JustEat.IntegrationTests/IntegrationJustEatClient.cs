@@ -22,6 +22,7 @@ namespace JustEat.IntegrationTests
             Assert.Equal(true, true);
 
             restaurantList = jeClient.GetAvailableRestaurants("").GetAwaiter().GetResult();
+            // Just test we reached here without an exception
             Assert.Equal(true, true);
         }
     }
