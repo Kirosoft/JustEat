@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
-using System.Collections;
 using System.Linq;
 using JustEat.Models;
 using System.Collections.Generic;

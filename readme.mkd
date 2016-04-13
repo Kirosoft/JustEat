@@ -1,0 +1,146 @@
+
+#JustEat - API Integration Example
+
+Developed using VS2015 Community Editiion - [Download here](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
+
+Requires ASP.NET Core 1.0 (vNext, ASP5, MVC6) - [Download here](https://get.asp.net/)
+
+Project technologies:
+
+* ASP.NET MVC
+* Knockout.js
+* jQuery
+* Gulp
+* Bower
+* xUnit
+* Moq (WIP)
+
+### Solution Notes
+
+Added a caching model layer to simulate part of data provider layer
+Assume that 'currently available' means IsOpenNow == true
+
+### How long did you spend on the coding test?
+
+I spent approx 1 hour coding, the remainder was planning the solution/investigating issues with the new asp.net core framework (particularly the xUnit test mocking framework). Total time spent approx. 4 hours.
+
+### What would you add to your solution if you had more time?
+
+For a high throughput read optimised service, I would consider:
+
+* Distributed cache layer for horizontal scaling 
+* Distributed data with replication
+* Possibly sharding across the cache layer
+* Real time distributed event layer for real-time updates
+* Stateless operation
+* For very high throughput I would consider
+	* Distributed query e.g. Map/reduce
+* Distributed processing 
+* For lesser performance entity frameworks/nhibernate optimised with L1/L2 caching
+
+Missing, or elements requiring enhancement:-
+
+* Improved validation on web inputs (short code)
+* Look to refactor some of the JustEatClient.cs generic http code into a superclass (for re-use)
+* For more complex client-side javascript I would consider adding more architectural structure (MVC etc) using common js frameworks. My current preference is towards a more functional/reactive approach (like meteorjs, knockout, underscore)
+* Improved coverage on unit tests
+* Unit tests only cover the JustEatClient.cs class as present
+	* Run code coverage tool
+	* Extend unit test converage to match gaps
+* Run code linting tool to ensure code is consistently formatted
+* Extend unit tests to cover the RestaurantCache code
+* Add unit tests for the controller
+* Improved integration tests
+
+	As the data returned by the je-api service is not fixed it is hard to consider better integration tests for the code as currently written. 
+	I need to refactor the GetRestaurants function to return the raw server response before further processing - which can then be more effectively integration tested to check for initial valid data.
+* Integration testing through the controller response to check routes
+* Add acceptance tests (BDD)
+	* Check the format and function of pages as per user expectation
+* User authentication (federated e.g. google, facebook etc via OAUTH)
+* Session management
+* Add some CSS styling
+* SASS/LESS configured
+* Complete configuration of the js obfuscation/minimisation pipeline (gulp/bower)
+* Add responsive layout to optimise for different devices (e.g. Bootstrap)
+* Add typical UI features intellisense/sorting/filtering
+* Containerisation support e.g. docker
+* Cross browser accessibility checks 
+* Improved logging
+* Add ES5/6 support
+* Fix the Moq framework dependencies
+* Fix the client to communicate data with the server via a webservice - so it is possible to fully implement reactive features.
+* Review security/pen test
+* Move some constant strings to configuration file
+* Move auth code into a safely stored secrets file
+
+
+### What was the most useful feature that was added to the latest version of your chosen language? 
+
+c# 6 - null conditional operator
+
+Replaces code like:
+
+```c#
+If (logger != null) {
+	logger.log("test messgage");
+}
+```
+
+Becomes:
+
+```c#
+logger?.log("test message");
+```
+
+A relatively small improvement but I think it leads to cleaner reading code and less ceremony.
+
+
+### How would you track down a performance issue in production?
+
+First task is to identify the general layer/service that might be causing reduced performance e.g. database, middleware, front end, load balancing etc. 
+This can be done by instrumenting additional logging for method calls or areas of convern to measure the performance. 
+If the problem is harder to find than simple logging will show then full code analysis tools can be used to pictorially show execution times for each method. 
+There are similar tools to track, evaluate and  optimise execution plans for sql databases. 
+In addition hardware resources need to be considered - so evaluation of machine/system performance is often required alongside software/db analysis.
+
+
+### Have you ever had to do this?
+
+Yes, I have helped track performance issues in all layers within complex hetrogenoous software platforms.
+For example, I was asked to fix a database performance issues within a risk analytics software platform. The solution to this issue required analysis of database performance, review of the coding of their ORM data layer. 
+There were particular problems here with relational data definitions and a lack of a lazy loading approach, which meant in many cases large relational strucutures were copied into memory when only small pieces of data were required.
+Rapid data changes were also causing fragmentation of the the sql table paging. Some, scripts were developed to analyse primary key/index performance and auto reduce fragrmenation on a nightly basis. This lead to a considerable improvment inperformance.
+I have also analysed performance issues in both front-end and server-side code bases. 
+
+### How would you improve the JUST EAT APIs that you just used?
+
+I don’t know the exact performance use case, but here are some possible improvements:
+
+* Provide the swagger.json file so clients can generate their own strongly typed de-serialised objects.
+* The swagger editor does not seem setup to pass the correct headers through to the server?
+* The method from je-api used during this test potentially returns a lot of data. Depending upon the exact use case it may be possible to trade off more shorter requests (which can be more easily load balanced by horizontal scaling) to the server against fewer larger requests e.g. reduce the properties returned initially and/or provide a paged version of the API.
+* Not sure why every field is marked as optional in the APi definition?
+* If the restaurant's returned are based on short code only, it is possibly nearby results could be missed which are just across boundary between short codes?
+
+
+### Please describe yourself using JSON
+
+```
+{
+	"type": "person",
+	"properties": {
+		"gender": "male",
+		"height": "1.88m",
+		"eyes": "brown",
+		"hair": "brown",
+		"email": "mark@kirosoft.co.uk",
+		"mobile": "07909330001",
+		"enjoys": ["problem solving", "new technology"],
+		"traits": ["friendly", "adaptable", "conscientious"],
+		"hobbies": ["sailing", "rock climbing", "diy"],
+		"interests": ["functional programming", "reactive programming", "universal computing", "machine learning", "ai", "neural networks", "robotics"],
+		"Github account": "https://github.com/kirosoft"
+	}
+}
+```
